@@ -32,3 +32,35 @@
     @apply relative overflow-hidden lg:before:bottom-0 lg:before:left-0 lg:before:h-2 lg:before:w-full lg:before:translate-y-2 lg:before:bg-white lg:before:transition-all lg:before:duration-300 lg:before:ease-in-out lg:hover:before:translate-y-0;
   }
 }
+
+.cls-1 {
+  fill: #fff;
+}
+
+.cls-2 {
+  fill: #1d1d1b;
+  opacity: .75;
+}
+
+.cls-3 {
+  fill: #dadada;
+}
+
+.cls-3, .cls-4 {
+  stroke: #1d1d1b;
+  stroke-miterlimit: 10;
+  stroke-width: .5px;
+}
+
+.cls-5 {
+  isolation: isolate;
+}
+
+.cls-6 {
+  fill: #706f6f;
+  mix-blend-mode: multiply;
+}
+
+.cls-4 {
+  fill: #b2b2b2;
+}
