@@ -1,4 +1,13 @@
 <script setup>
+import PocketBase from 'pocketbase'
+var connected = false;
+var pocketbase_ip = "";
+if (import.meta.env.MODE === "production")
+    pocketbase_ip = "https://tavue.angelo-simoes.fr:443";
+else pocketbase_ip = "http://127.0.0.1:8090";
+const pb = new PocketBase(pocketbase_ip);
+var currentUser;
+
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import Logo from './icons/Logo.vue';
@@ -60,7 +69,7 @@ const loginGithub = async () => {
 
         <!-- Modale -->
         
-  <div v-if="showModal" class="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center mt-[-750px]">
+  <div v-if="showModal" class="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center mt-[-720px]">
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <div @click="showModal = false" class="fixed inset-0 transition-opacity">
               <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -69,12 +78,13 @@ const loginGithub = async () => {
           <div class="inline-block align-middle bg-black rounded-lg shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full flex">
               
               <!-- Image Section -->
-              <div class=" px-48 bg-cover bg-center border-black rounded" style="background-image: url('../../public/img-popup.jpg')">
+              <div class="bg-cover bg-center">
+                <img class="border-black rounded" src="../../public/img-popup.jpg" alt="Femme">
               </div>
 
               <!-- Content Section -->
 
-              <div class=" px-36 py-8 text-white ">
+              <div class=" px-32 py-8 text-white ">
 <!--Connexion-->
                 <div v-if="isSignupMode">
                   <div class="flex justify-center mb-8">
