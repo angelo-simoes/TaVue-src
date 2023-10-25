@@ -1,3 +1,6 @@
+<script setup>  
+import MapOSM from "../components/MapOSM.vue";
+</script>
 <template>
     <div class="flex flex-col space-y-16 mx-4 md:mx-28 p-8 grille">
   
@@ -38,7 +41,7 @@
 
         <div class="text-center">
             <p class="text-xl lg:text-3xl font-bold mb-4 text-yellow-600">133 Rue du Faubourg Saint-Antoine, 75011 Paris</p>
-            
+<MapOSM/>
         </div>
 
 
