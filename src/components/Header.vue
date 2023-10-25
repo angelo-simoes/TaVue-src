@@ -52,9 +52,8 @@ const refresh = ()=>{
 const loginGithub = async () => {
     await pb.collection("users").authWithOAuth2({ provider: "github" });
     if (pb.authStore.isValid) {
-        document.getElementById("status").innerHTML = "Vous êtes maintenant connecté(e) avec Github";
-        isConnected = true;
-        currentUser = pb.authStore.model;
+        isConnected.value = true;
+        currentUser.value = pb.authStore.model;
     }
 };
 
