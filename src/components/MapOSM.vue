@@ -79,7 +79,7 @@
 
         // Ajout d'un marqueur
         marker.value = Leaflet.marker([48.862725, 2.287592], {icon: myIcon}).addTo(map);
-        marker.bindPopup('Boutique TaVue')
+        
         //let marker = Leaflet.marker([48.862725, 2.287592], {icon: myIcon}).addTo(map)
 
         // Ajouter une popup / infobulle
@@ -150,7 +150,7 @@ if(type.value == 1){ // départ
 <template>
     <div class="container mx-auto text-black">
   
-      <h5 class="mb-4">Calcul à partir de 2 adresses</h5>
+      <h5 class="mb-4">Calculez votre distance par rapport à notre boutique !</h5>
   
       <table class="w-full border-collapse">
   
@@ -167,13 +167,13 @@ if(type.value == 1){ // départ
               <div class="flex items-center">
                 <input class="border rounded-l px-3 py-2 w-full" type="text" v-model="depart.adr" />
                 <button class="bg-blue-500 hover:bg-blue-700 text-white rounded-r px-4 py-2" @click="verif(depart, 1)">
-                  <i class="fas fa-eye"></i>
+                  Voir
                 </button>
               </div>
             </td>
             <td class="p-2">
               <button class="bg-blue-500 hover:bg-blue-700 text-white w-full py-2 rounded" @click="calculateRoute">
-                Calcul trajet(s)
+                Voir l'itinéraire
               </button>
             </td>
           </tr>

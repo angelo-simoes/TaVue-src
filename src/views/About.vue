@@ -41,7 +41,7 @@ import MapOSM from "../components/MapOSM.vue";
 
         <div class="text-center">
             <p class="text-xl lg:text-3xl font-bold mb-4 text-yellow-600">133 Rue du Faubourg Saint-Antoine, 75011 Paris</p>
-<MapOSM/>
+            <MapOSM/>
         </div>
 
 

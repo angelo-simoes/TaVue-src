@@ -30,7 +30,7 @@
             :class="{ '!visible opacity-100': activeMenu }"
         >
         <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex"> 
-                <li class="menu-item-black"><RouterLink to="#" @click="closeMenu" class="menu-link">Personnalisation</RouterLink></li>
+                <li class="menu-item-black"><RouterLink to="/prismatique" @click="closeMenu" class="menu-link">Personnalisation</RouterLink></li>
                 <li class="menu-item-black"><RouterLink to="/about" @click="closeMenu" class="menu-link">À propos</RouterLink></li>
 	    </ul>
       <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex"> 

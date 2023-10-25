@@ -3,8 +3,7 @@
   import { ref, onMounted } from 'vue';
   // Import éléments de routage
   import { useRouter } from 'vue-router';
-  const router = useRouter()
-  
+  const router = useRouter()  
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Banner from "./components/Banner.vue";
