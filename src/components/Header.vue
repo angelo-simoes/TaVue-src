@@ -11,7 +11,7 @@
 </script>
 
 <template>
- <header class="flex items-center justify-between px-4 h-20 border-b-2 border-b-indigo-100 gap-8 lg:py-0 grille mx-16">
+ <header class="flex items-center justify-between px-4 h-20 border-b-2 border-b-indigo-100 gap-8 lg:py-0 grille mx-1">
       <RouterLink class="ml-10" to="/">
         <Logo/>
       </RouterLink>
@@ -31,7 +31,7 @@
         >
         <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex"> 
                 <li class="menu-item-black"><RouterLink to="#" @click="closeMenu" class="menu-link">Personnalisation</RouterLink></li>
-                <li class="menu-item-black"><RouterLink to="#" @click="closeMenu" class="menu-link">À propos</RouterLink></li>
+                <li class="menu-item-black"><RouterLink to="/about" @click="closeMenu" class="menu-link">À propos</RouterLink></li>
 	    </ul>
       <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex"> 
                 <li class="menu-item-black"><RouterLink to="#"  class="menu-link"><iconCart/></RouterLink></li> 

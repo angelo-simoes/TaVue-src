@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import About from            '../views/About.vue'
+import HomeView from '@/views/HomeView.vue'
+import About from '@/views/About.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +11,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/aboutus',
+      path: '/about',
       name: 'About',
       component: About
     },
@@ -22,7 +22,7 @@ const router = createRouter({
 // to : où il veut aller
 // from : d'où il vient 
 // next : s'il peut y aller
-router.beforeEach( (to, from, next) =>{
+/*  router.beforeEach( (to, from, next) =>{
   if(to.name == "HomeView"){ // Si page d'accueil demandée, on autorise
     next()
   }else{  // Si une autre route est demandée, on vérifie si l'utilisateur est connecté        
@@ -32,6 +32,6 @@ router.beforeEach( (to, from, next) =>{
       router.push({name:"HomeView"})
     }
   }
-})
+})*/
 
 export default router

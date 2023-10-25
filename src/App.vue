@@ -16,7 +16,7 @@ import PocketBase from "pocketbase";
   <Header/>
   <Banner/>
 
-  <RouterView />
+  <router-view />
   <BannerFooter/>
   <Footer/>
 

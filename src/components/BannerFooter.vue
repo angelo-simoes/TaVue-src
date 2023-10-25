@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="bg-gray-100 py-8 mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6 lg:space-x-64 grille">
+  <div class="bg-gray-100 py-8 mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6 lg:space-x-36 grille">
 
     <div class="flex flex-col items-center mb-4 sm:mb-0">
       <iconPackage />
