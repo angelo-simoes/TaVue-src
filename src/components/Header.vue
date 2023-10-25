@@ -1,12 +1,16 @@
 <script setup>
 import PocketBase from 'pocketbase'
-var connected = false;
+import { useRouter } from 'vue-router';
+  const router = useRouter()
+let isConnected = ref(false)
 var pocketbase_ip = "";
 if (import.meta.env.MODE === "production")
     pocketbase_ip = "https://www.tavue.angelo-simoes.fr:443"; 
 else pocketbase_ip = "http://127.0.0.1:8090";
 const pb = new PocketBase(pocketbase_ip);
-var currentUser;
+let currentUser = ref(null)
+let email = ref('')
+let password = ref('')
 
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
@@ -18,6 +22,7 @@ import iconCart from './icons/iconCart.vue';
 const activeMenu = ref(false);
 const showModal = ref(false);
 
+
 const closeMenu = () => {
     activeMenu.value = false;
 }
@@ -25,15 +30,70 @@ const closeMenu = () => {
 const isSignupMode = ref(false);
 
 // Exportez directement la fonction
+
+const refresh = ()=>{
+  if(pb.authStore.isValid){
+    currentUser.value = pb.authStore.model
+    isConnected.value = true
+
+   /* avatar.value =
+      "http://127.0.0.1:8090/api/files/"  // Adresse serveur et repertoire des fichiers image
+      +currentUser.value.collectionId     // Id ou name de la collection concernée
+      +"/"
+      +currentUser.value.id               // Id de l'utilisateur connecté
+      +"/"
+      +currentUser.value.avatar           // Nom fichier image pocketbase
+      +"?thumb=100x100"    */               // Taille par défaut     
+
+//      console.log("image avatar utilisateur", avatar)
+  }
+}
+
 const loginGithub = async () => {
     await pb.collection("users").authWithOAuth2({ provider: "github" });
     if (pb.authStore.isValid) {
         document.getElementById("status").innerHTML = "Vous êtes maintenant connecté(e) avec Github";
-        connected = true;
+        isConnected = true;
         currentUser = pb.authStore.model;
     }
 };
+
+const login = async()=>{
+  try{
+    const authData = await pb.collection('users')
+    .authWithPassword(email.value, password.value)
+//    console.log("connecté : ",authData)
+    refresh()    
+  }catch(error){
+
+  }
+}
+
+const register = async () => {
+    currentUser = await pb.collection("users").create({
+        email: email.value,
+        name: document.getElementById("nom").value,
+        username: document.getElementById("prenom").value,
+        password: password.value,
+        passwordConfirm: password.value,
+    });
+    if (currentUser) {
+                await login();
+            }
+    
+};
+
+
+const logout = ()=>{
+  // Suppression utilisateur connecté
+  pb.authStore.clear()
+  isConnected.value=false
+ // avatar.value = null
+  // Retour à la page d'accueil -> Redirection
+  router.push({name:"home"})
+}
 </script>
+
 
 <template>
  <header class="flex items-center justify-between px-4 h-20 border-b-2 border-b-indigo-100 gap-8 lg:py-0 grille mx-1">
@@ -60,7 +120,31 @@ const loginGithub = async () => {
 	    </ul>
       <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex"> 
                 <li class="menu-item-black"><RouterLink to="#"  class="menu-link"><iconCart/></RouterLink></li> 
-                <button @click="showModal = true" class="menu-item-black menu-link"><iconAccount/></button> 
+
+                <span v-if="isConnected" class="flex items-center"> <!-- Direction de flexbox modifiée en ligne -->
+                    <li class="flex flex-col items-center mr-4 mt-[-30px]"> <!-- Ajout de margin-right pour espacer de l'icône -->
+                        <button class="menu-item-black menu-link mt-[-4px]">
+                          <RouterLink to="/#">
+                            <iconAccount/>
+                          </RouterLink>
+                            
+                        </button>
+                        <span class="mt-[-40px] text-sm">{{ currentUser.username }} </span>
+                    </li>
+                    <button class="btn btn-dark menu-item-black menu-link" type="button" @click="logout()">LogOut</button>
+                </span>
+
+
+                  <span v-else>
+                      <li class="flex flex-col items-center"> <!-- Direction de flexbox modifiée en colonne -->
+                          <button @click="showModal = true" class="menu-item-black menu-link mt-[-4px]">
+                              <iconAccount/>
+                          </button>
+                          <span class="mt-[-40px] text-sm">Login</span> <!-- Ajout de margin-top pour espacer du bouton -->
+                      </li>
+                  </span>
+
+ 
 	    </ul>
 
 		  </nav>
@@ -99,16 +183,16 @@ const loginGithub = async () => {
                           <label class="block text-sm font-bold mb-2 text-left" for="email">
                               Email
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
+                          <input v-model="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
                       </div>
                       <div class="mb-6">
                           <label class="block text-sm font-bold mb-2 text-left" for="password">
                               Mot de passe
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+                          <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
                       </div>
                       <div class="text-center mt-4"> <!-- Ajout de la classe text-center pour centrer le contenu -->
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        <button @click="showModal = false" @click.prevent="login" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                             Se Connecter
                         </button>
                     </div>
@@ -129,7 +213,7 @@ const loginGithub = async () => {
                           <label class="block text-sm font-bold mb-2 text-left" for="email">
                               Email
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
+                          <input v-model="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
                       </div>
                       <div class="mb-2">
                           <label class="block text-sm font-bold mb-2 text-left" for="prenom">
@@ -147,10 +231,10 @@ const loginGithub = async () => {
                           <label class="block text-sm font-bold mb-2 text-left" for="password">
                               Mot de passe
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+                          <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
                       </div>
                       <div class="text-center mt-2"> <!-- Ajout de la classe text-center pour centrer le contenu -->
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        <button @click="showModal = false" v-on:click="register()" class=" bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                             S'inscrire
                         </button>
                     </div>
