@@ -14,6 +14,8 @@ if(pb.authStore.isValid){
   currentUser.value = pb.authStore.model
 }
 
+import { useRouter } from 'vue-router';
+  const router = useRouter()
 
 
 
@@ -75,6 +77,7 @@ const buyLunette = async () => {
         prix: 199,
         utilisateur : currentUser.id,
     });
+    router.push({name:"home"})
     console.log("couleur cadre:", cadreName);
 }
 
@@ -90,6 +93,7 @@ const saveLunette = async () => {
         utilisateur : currentUser.value.id,
         prix: 199
     });
+    router.push({name:"home"})
     console.log("couleur cadre:", cadreName);
 }
 
