@@ -123,9 +123,10 @@ const logout = ()=>{
                 <span v-if="isConnected" class="flex items-center"> <!-- Direction de flexbox modifiée en ligne -->
                     <li class="flex flex-col items-center mr-4 mt-[-30px]"> <!-- Ajout de margin-right pour espacer de l'icône -->
                         <button class="menu-item-black menu-link mt-[-4px]">
-                          <RouterLink to="/#">
+                          <RouterLink to="/compte">
                             <iconAccount/>
-                          </RouterLink>
+                        </RouterLink>
+
                             
                         </button>
                         <span class="mt-[-40px] text-sm">{{ currentUser.username }} </span>

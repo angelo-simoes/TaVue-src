@@ -7,10 +7,10 @@
   <div class="flex flex-col space-y-16 mx-2 md:mx-28 p-8 grille">
 
               <!-- Section avec texte à gauche et image à droite -->
-              <div class="flex flex-col md:flex-row justify-between items-center gap-16">
+              <div class="flex flex-col md:flex-row justify-between items-center gap-16 mb-[-500px]">
 
 <!-- Contenu textuel (sera en haut sur petit écran, à gauche sur grand écran) -->
-<div class="w-full md:w-1/3 text-center border-2 rounded-2xl border-black px-8 py-16 h-auto">
+<div class="w-full md:w-1/3 text-center border-2 rounded-2xl border-black px-8 py-16 h-auto mt-[-500px]">
     <h2 class="text-xl lg:text-3xl font-bold mb-4 font-merriweather">La Prismatique</h2>
     <p class="text-xl lg:text-sm font-regular mb-4">Le modèle intemporelle de TaVue façonné selon votre vision de la vie.</p>
     <div class="text-left">
@@ -26,7 +26,7 @@
             <!-- Conteneur pour les boutons -->
             <div class="flex flex-col space-y-4 w-full mt-8">
                 <button class="w-full border-2 rounded-2xl border-black text-black px-8 uppercase font-bold">
-                    <RouterLink to="/prismatique" class="flex items-center justify-center">
+                    <RouterLink to="/custom" class="flex items-center justify-center">
                         <iconPerso class="mr-2"/>
                         Personnaliser
                     </RouterLink>

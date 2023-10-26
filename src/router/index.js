@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import About from '@/views/About.vue'
 import Prismatique from '@/views/Prismatique.vue'
+import Custom from '@/views/Custom.vue'
+import Test from '@/views/Test.vue'
+import Compte from '@/views/compte.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +24,23 @@ const router = createRouter({
       name: 'Prismatique',
       component: Prismatique
     },
+    {
+      path: '/custom',
+      name: 'Custom',
+      component: Custom
+    },
+    {
+      path: '/compte',
+      name: 'Compte',
+      component: Compte,
+      props: true
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test,
+      props: true
+    }
   ]
 })
 

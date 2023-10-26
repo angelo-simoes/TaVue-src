@@ -34,7 +34,7 @@
       <nav class="space-y-4 col-span-3 col-start-2">
         <h4 class="font-bold uppercase text-yellow-500">à propos de TaVue</h4>
         <ul class="lg:space-y-4">
-            <li><RouterLink to="/#">A propos</RouterLink></li>
+            <li><RouterLink to="/about">A propos</RouterLink></li>
             <li><RouterLink to="/#">Conditions générales</RouterLink></li>
             <li><RouterLink to="/#">Confidentialité</RouterLink></li>
         </ul>
