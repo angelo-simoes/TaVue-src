@@ -73,7 +73,7 @@ const buyLunette = async () => {
         commande: true,
         enregistre: true,
         prix: 199,
-        utilisateur : currentUser.value.id,
+        utilisateur : currentUser.id,
     });
     console.log("couleur cadre:", cadreName);
 }

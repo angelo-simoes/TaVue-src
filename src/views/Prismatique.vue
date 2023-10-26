@@ -32,11 +32,11 @@
                     </RouterLink>
                 </button>
 
-                <button class="w-full bg-yellow-500 text-white py-4 px-8 uppercase font-bold transition duration-300">
+<!--                 <button class="w-full bg-yellow-500 text-white py-4 px-8 uppercase font-bold transition duration-300">
                     <RouterLink to="/prismatique" class="flex items-center justify-center">
                         Ajouter au panier
                     </RouterLink>
-                </button>
+                </button> -->
             </div>
         </div>
         <div class="w-full md:w-3/5">

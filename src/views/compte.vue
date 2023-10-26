@@ -1,6 +1,8 @@
   <script setup>
   import { ref, onMounted } from 'vue';
 
+  let isConnected = ref(false)
+
   import PocketBase from 'pocketbase';
   var pocketbase_ip = "";
   if (import.meta.env.MODE === "production")
@@ -11,6 +13,7 @@
   let currentUser = ref(null);  // pour stocker les données de l'utilisateur
   if(pb.authStore.isValid){
     currentUser.value = pb.authStore.model
+    isConnected.value = true
   }
 
   console.log("Utilisateur:", currentUser.value);
@@ -27,9 +30,13 @@
   </script>
 
   <template>
-        <div class="flex flex-col mx-4 md:mx-28 pt-8 grille">
+        <div class="flex flex-col mx-4 md:mx-28 pt-8 grille" v-if="isConnected">
           <p class="font-semibold">Email : {{ currentUser.email }}</p>
           <p class="font-semibold">Username : {{ currentUser.username }}</p>
+        </div>
+
+        <div class="flex flex-col mx-4 md:mx-28 pt-8 grille" v-else>
+            <p>Vous n'êtes pas connecté</p>
         </div>
   </template>
 

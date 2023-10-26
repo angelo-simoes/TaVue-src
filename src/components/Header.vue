@@ -113,7 +113,7 @@ const logout = ()=>{
             class="z-10 invisible opacity-0 fixed inset-0 h-screen w-screen bg-slate-50 text-2xl text-black transition-all duration-300 ease-in-out lg:visible lg:relative lg:flex lg:h-auto lg:w-auto lg:items-center lg:bg-transparent lg:text-sm lg:font-bold lg:uppercase lg:tracking-wide lg:text-black lg:opacity-100"
             :class="{ '!visible opacity-100': activeMenu }"
         >
-        <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex"> 
+        <ul class="mt-[25vh] ml-16 lg:m-0 lg:flex" > 
                 <li class="menu-item-black"><RouterLink to="/prismatique" @click="closeMenu" class="menu-link">Personnalisation</RouterLink></li>
                 <li class="menu-item-black"><RouterLink to="/about" @click="closeMenu" class="menu-link">À propos</RouterLink></li>
 	    </ul>
